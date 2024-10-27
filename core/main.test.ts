@@ -26,7 +26,6 @@ describe("#initializeGame", () => {
           { position: 2, name: "Charlie", cardAmount: 5 },
           { position: 3, name: "David", cardAmount: 5 },
         ],
-        trialCardsRevealed: 0,
       })
     );
   });
@@ -51,7 +50,6 @@ describe("#initializeGame", () => {
           { position: 4, name: "Eve", cardAmount: 5 },
           { position: 5, name: "Frank", cardAmount: 5 },
         ],
-        trialCardsRevealed: 0,
       })
     );
   });
@@ -78,7 +76,6 @@ describe("#initializeGame", () => {
           { position: 5, name: "Frank", cardAmount: 4 },
           { position: 6, name: "Grace", cardAmount: 4 },
         ],
-        trialCardsRevealed: 0,
       })
     );
   });
@@ -109,7 +106,6 @@ describe("#initializeGame", () => {
           { position: 7, name: "Heidi", cardAmount: 4 },
           { position: 8, name: "Ivan", cardAmount: 4 },
         ],
-        trialCardsRevealed: 0,
       })
     );
   });
@@ -142,7 +138,6 @@ describe("#initializeGame", () => {
           { position: 8, name: "Ivan", cardAmount: 3 },
           { position: 9, name: "Judy", cardAmount: 3 },
         ],
-        trialCardsRevealed: 0,
       })
     );
   });
@@ -179,7 +174,6 @@ describe("#initializeGame", () => {
           { position: 10, name: "Kevin", cardAmount: 3 },
           { position: 11, name: "Laura", cardAmount: 3 },
         ],
-        trialCardsRevealed: 0,
       })
     );
   });

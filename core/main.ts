@@ -5,7 +5,6 @@ const MAXIMUM_AMOUNT_PLAYERS = 12;
 
 interface GameInfo {
   players: PlayerInfo[];
-  trialCardsRevealed: number;
 }
 
 interface PlayerInfo {
@@ -40,7 +39,6 @@ export function initializeGame(
         name,
         cardAmount,
       })),
-      trialCardsRevealed: 0,
     };
   });
 }
