@@ -61,6 +61,20 @@ export function revealTrialCard(
   };
 }
 
+export function killPlayers(
+  gameInfo: GameInfo,
+  targetedPlayerPositions: number[],
+): GameInfo {
+  return {
+    ...gameInfo,
+    players: gameInfo.players.map((player) =>
+      targetedPlayerPositions.includes(player.position)
+        ? { ...player, cardAmount: 0 }
+        : player
+    ),
+  };
+}
+
 enum ValidNumberOfPlayers {
   Four = 4,
   Five = 5,

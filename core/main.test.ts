@@ -5,6 +5,7 @@ import { Either } from "npm:effect";
 import {
   type GameInfo,
   initializeGame,
+  killPlayers,
   revealTrialCard,
   TooFewPlayersError,
   TooManyPlayersError,
@@ -242,6 +243,30 @@ describe("#revealTrialCard", () => {
         { position: 1, name: "Bob", cardAmount: 0 },
         { position: 2, name: "Charlie", cardAmount: 3 },
         { position: 3, name: "David", cardAmount: 3 },
+      ],
+    });
+  });
+});
+
+describe("#killPlayers", () => {
+  it("should remove all cards from the targeted players", () => {
+    const gameInfo: GameInfo = {
+      players: [
+        { position: 0, name: "Alice", cardAmount: 3 },
+        { position: 1, name: "Bob", cardAmount: 3 },
+        { position: 2, name: "Charlie", cardAmount: 3 },
+        { position: 3, name: "David", cardAmount: 3 },
+      ],
+    };
+
+    const result = killPlayers(gameInfo, [1, 3]);
+
+    expect(result).toEqual({
+      players: [
+        { position: 0, name: "Alice", cardAmount: 3 },
+        { position: 1, name: "Bob", cardAmount: 0 },
+        { position: 2, name: "Charlie", cardAmount: 3 },
+        { position: 3, name: "David", cardAmount: 0 },
       ],
     });
   });
