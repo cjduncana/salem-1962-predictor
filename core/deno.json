@@ -4,8 +4,5 @@
   "exports": {
     "./game": "./game.ts",
     "./player": "./player.ts"
-  },
-  "tasks": {
-    "dev": "deno run --watch main.ts"
   }
 }
