@@ -43,11 +43,6 @@ export function initializeGame(
   });
 }
 
-export class InvalidPlayerPositionError {
-  readonly _tag = "InvalidPlayerPositionError";
-  constructor(readonly playerPosition: number) {}
-}
-
 export function revealTrialCard(
   gameInfo: GameInfo,
   targetedPlayerPosition: number,
