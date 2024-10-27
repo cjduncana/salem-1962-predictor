@@ -3,6 +3,7 @@
     "Deno"
   ],
   "deno.enable": true,
+  "editor.tabSize": 2,
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   }
