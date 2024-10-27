@@ -1,7 +1,10 @@
 {
   "name": "@salem/core",
   "version": "0.1.0",
-  "exports": "./main.ts",
+  "exports": {
+    "./game": "./game.ts",
+    "./player": "./player.ts"
+  },
   "tasks": {
     "dev": "deno run --watch main.ts"
   }
