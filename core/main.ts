@@ -24,11 +24,11 @@ export class TooManyPlayersError {
 }
 
 export function initializeGame(
-  playerNames: string[]
+  playerNames: string[],
 ): Either.Either<GameInfo, TooFewPlayersError | TooManyPlayersError> {
   return Either.gen(function* () {
     const validNumberOfPlayers = yield* parseValidNumberOfPlayers(
-      playerNames.length
+      playerNames.length,
     );
     const cardAmount =
       initialCardAmountPerNumberOfPlayers[validNumberOfPlayers];
@@ -51,16 +51,16 @@ export class InvalidPlayerPositionError {
 export function revealTrialCard(
   gameInfo: GameInfo,
   targetedPlayerPosition: number,
-  isRevealedCardAWitch: boolean
+  isRevealedCardAWitch: boolean,
 ): GameInfo {
   return {
     ...gameInfo,
     players: gameInfo.players.map((player) =>
       player.position === targetedPlayerPosition
         ? {
-            ...player,
-            cardAmount: isRevealedCardAWitch ? 0 : player.cardAmount - 1,
-          }
+          ...player,
+          cardAmount: isRevealedCardAWitch ? 0 : player.cardAmount - 1,
+        }
         : player
     ),
   };
@@ -79,7 +79,7 @@ enum ValidNumberOfPlayers {
 }
 
 function parseValidNumberOfPlayers(
-  amountOfPlayers: number
+  amountOfPlayers: number,
 ): Either.Either<
   ValidNumberOfPlayers,
   TooFewPlayersError | TooManyPlayersError
