@@ -1,9 +1,9 @@
 {
-    "cSpell.words": [
-        "Deno"
-    ],
-    "deno.enable": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "denoland.vscode-deno"
-    }
+  "cSpell.words": [
+    "Deno"
+  ],
+  "deno.enable": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  }
 }
