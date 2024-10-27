@@ -4,8 +4,10 @@ import { Either } from "npm:effect";
 
 import {
   initializeGame,
+  revealTrialCard,
   TooFewPlayersError,
   TooManyPlayersError,
+  type GameInfo,
 } from "./main.ts";
 
 describe("#initializeGame", () => {
@@ -196,5 +198,51 @@ describe("#initializeGame", () => {
     ]);
 
     expect(result).toEqual(Either.left(new TooManyPlayersError(13)));
+  });
+});
+
+describe("#revealTrialCard", () => {
+  it("should reduce the card amount of the targeted player by one if the revealed card is not a witch", () => {
+    const gameInfo: GameInfo = {
+      players: [
+        { position: 0, name: "Alice", cardAmount: 3 },
+        { position: 1, name: "Bob", cardAmount: 3 },
+        { position: 2, name: "Charlie", cardAmount: 3 },
+        { position: 3, name: "David", cardAmount: 3 },
+      ],
+    };
+
+    const result = revealTrialCard(gameInfo, 1, false);
+
+    expect(result).toEqual({
+      players: [
+        { position: 0, name: "Alice", cardAmount: 3 },
+        { position: 1, name: "Bob", cardAmount: 2 },
+        { position: 2, name: "Charlie", cardAmount: 3 },
+        { position: 3, name: "David", cardAmount: 3 },
+      ],
+    });
+  });
+
+  it("should remove all cards from the targeted player if the revealed card is a witch", () => {
+    const gameInfo: GameInfo = {
+      players: [
+        { position: 0, name: "Alice", cardAmount: 3 },
+        { position: 1, name: "Bob", cardAmount: 3 },
+        { position: 2, name: "Charlie", cardAmount: 3 },
+        { position: 3, name: "David", cardAmount: 3 },
+      ],
+    };
+
+    const result = revealTrialCard(gameInfo, 1, true);
+
+    expect(result).toEqual({
+      players: [
+        { position: 0, name: "Alice", cardAmount: 3 },
+        { position: 1, name: "Bob", cardAmount: 0 },
+        { position: 2, name: "Charlie", cardAmount: 3 },
+        { position: 3, name: "David", cardAmount: 3 },
+      ],
+    });
   });
 });

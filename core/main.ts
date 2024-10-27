@@ -3,7 +3,7 @@ import { Either } from "npm:effect";
 const MINIMUM_AMOUNT_PLAYERS = 4;
 const MAXIMUM_AMOUNT_PLAYERS = 12;
 
-interface GameInfo {
+export interface GameInfo {
   players: PlayerInfo[];
 }
 
@@ -41,6 +41,29 @@ export function initializeGame(
       })),
     };
   });
+}
+
+export class InvalidPlayerPositionError {
+  readonly _tag = "InvalidPlayerPositionError";
+  constructor(readonly playerPosition: number) {}
+}
+
+export function revealTrialCard(
+  gameInfo: GameInfo,
+  targetedPlayerPosition: number,
+  isRevealedCardAWitch: boolean
+): GameInfo {
+  return {
+    ...gameInfo,
+    players: gameInfo.players.map((player) =>
+      player.position === targetedPlayerPosition
+        ? {
+            ...player,
+            cardAmount: isRevealedCardAWitch ? 0 : player.cardAmount - 1,
+          }
+        : player
+    ),
+  };
 }
 
 enum ValidNumberOfPlayers {
