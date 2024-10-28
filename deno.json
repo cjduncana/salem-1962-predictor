@@ -1,4 +1,9 @@
 {
   "workspace": ["./core"],
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "lint": {
+    "rules": {
+      "exclude": ["no-misused-new"]
+    }
+  }
 }
