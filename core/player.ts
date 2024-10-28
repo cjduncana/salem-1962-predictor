@@ -7,7 +7,7 @@ export class Player {
     this.#trialCardAmount = cardAmount;
   }
 
-  static initialize(
+  static new(
     name: string,
     numberOfPlayers: NumberOfPlayers,
   ): Player {

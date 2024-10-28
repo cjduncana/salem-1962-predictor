@@ -8,13 +8,13 @@ import { Game } from "./game.ts";
 
 describe("#initialize", () => {
   it("should return an error if there are too few players", () => {
-    const result = Game.initialize(["Alice"]);
+    const result = Game.new(["Alice"]);
 
     expect(result).toEqual(Either.left(new TooFewPlayersError(1)));
   });
 
   it("should give five cards to each player if there are four or more players", () => {
-    const gameResult = Game.initialize(["Alice", "Bob", "Charlie", "David"]);
+    const gameResult = Game.new(["Alice", "Bob", "Charlie", "David"]);
 
     assert(
       Either.isRight(gameResult),
@@ -31,7 +31,7 @@ describe("#initialize", () => {
   });
 
   it("should give five cards to each player if there are six or less players", () => {
-    const gameResult = Game.initialize([
+    const gameResult = Game.new([
       "Alice",
       "Bob",
       "Charlie",
@@ -55,7 +55,7 @@ describe("#initialize", () => {
   });
 
   it("should give four cards to each player if there are seven or more players", () => {
-    const gameResult = Game.initialize([
+    const gameResult = Game.new([
       "Alice",
       "Bob",
       "Charlie",
@@ -80,7 +80,7 @@ describe("#initialize", () => {
   });
 
   it("should give four cards to each player if there are nine or less players", () => {
-    const gameResult = Game.initialize([
+    const gameResult = Game.new([
       "Alice",
       "Bob",
       "Charlie",
@@ -107,7 +107,7 @@ describe("#initialize", () => {
   });
 
   it("should give three cards to each player if there are ten or more players", () => {
-    const gameResult = Game.initialize([
+    const gameResult = Game.new([
       "Alice",
       "Bob",
       "Charlie",
@@ -135,7 +135,7 @@ describe("#initialize", () => {
   });
 
   it("should give three cards to each player if there are twelve or less players", () => {
-    const gameResult = Game.initialize([
+    const gameResult = Game.new([
       "Alice",
       "Bob",
       "Charlie",
@@ -165,7 +165,7 @@ describe("#initialize", () => {
   });
 
   it("should return an error if there are too many players", () => {
-    const result = Game.initialize([
+    const result = Game.new([
       "Alice",
       "Bob",
       "Charlie",
@@ -187,7 +187,7 @@ describe("#initialize", () => {
 
 describe("#revealTrialCard", () => {
   it("should reduce the card amount of the targeted player by one if the revealed card is not a witch", () => {
-    const gameResult = Game.initialize(["Alice", "Bob", "Charlie", "David"]);
+    const gameResult = Game.new(["Alice", "Bob", "Charlie", "David"]);
 
     assert(
       Either.isRight(gameResult),
@@ -214,7 +214,7 @@ describe("#revealTrialCard", () => {
   });
 
   it("should kill the targeted player if the revealed card is a witch", () => {
-    const gameResult = Game.initialize(["Alice", "Bob", "Charlie", "David"]);
+    const gameResult = Game.new(["Alice", "Bob", "Charlie", "David"]);
 
     assert(
       Either.isRight(gameResult),
@@ -238,7 +238,7 @@ describe("#revealTrialCard", () => {
 
 describe("#killPlayers", () => {
   it("should remove all cards from the targeted players", () => {
-    const gameResult = Game.initialize(["Alice", "Bob", "Charlie", "David"]);
+    const gameResult = Game.new(["Alice", "Bob", "Charlie", "David"]);
 
     assert(
       Either.isRight(gameResult),

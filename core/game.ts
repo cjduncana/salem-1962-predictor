@@ -10,7 +10,7 @@ export class Game {
     this.#players = players;
   }
 
-  static initialize(
+  static new(
     playerNames: string[],
   ): Either.Either<Game, TooFewPlayersError | TooManyPlayersError> {
     return Either.gen(function* () {
@@ -19,7 +19,7 @@ export class Game {
       );
 
       return new Game(
-        playerNames.map((name) => Player.initialize(name, numberOfPlayers)),
+        playerNames.map((name) => Player.new(name, numberOfPlayers)),
       );
     });
   }
