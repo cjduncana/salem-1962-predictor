@@ -1,6 +1,11 @@
 {
   "workspace": ["./core"],
   "nodeModulesDir": "auto",
+  "fmt": {
+    "useTabs": true,
+    "indentWidth": 4,
+    "semiColons": false
+  },
   "lint": {
     "rules": {
       "exclude": ["no-misused-new"]
