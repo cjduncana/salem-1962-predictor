@@ -26,7 +26,7 @@ describe("#initialize", () => {
 		expect(playersStillAlive).toHaveLength(4)
 
 		playersStillAlive.forEach((player) => {
-			expect(player.trialCardsRemaining).toEqual(5)
+			expect(player.tryalCardsRemaining).toEqual(5)
 		})
 	})
 
@@ -50,7 +50,7 @@ describe("#initialize", () => {
 		expect(playersStillAlive).toHaveLength(6)
 
 		playersStillAlive.forEach((player) => {
-			expect(player.trialCardsRemaining).toEqual(5)
+			expect(player.tryalCardsRemaining).toEqual(5)
 		})
 	})
 
@@ -75,7 +75,7 @@ describe("#initialize", () => {
 		expect(playersStillAlive).toHaveLength(7)
 
 		playersStillAlive.forEach((player) => {
-			expect(player.trialCardsRemaining).toEqual(4)
+			expect(player.tryalCardsRemaining).toEqual(4)
 		})
 	})
 
@@ -102,7 +102,7 @@ describe("#initialize", () => {
 		expect(playersStillAlive).toHaveLength(9)
 
 		playersStillAlive.forEach((player) => {
-			expect(player.trialCardsRemaining).toEqual(4)
+			expect(player.tryalCardsRemaining).toEqual(4)
 		})
 	})
 
@@ -130,7 +130,7 @@ describe("#initialize", () => {
 		expect(playersStillAlive).toHaveLength(10)
 
 		playersStillAlive.forEach((player) => {
-			expect(player.trialCardsRemaining).toEqual(3)
+			expect(player.tryalCardsRemaining).toEqual(3)
 		})
 	})
 
@@ -160,7 +160,7 @@ describe("#initialize", () => {
 		expect(playersStillAlive).toHaveLength(12)
 
 		playersStillAlive.forEach((player) => {
-			expect(player.trialCardsRemaining).toEqual(3)
+			expect(player.tryalCardsRemaining).toEqual(3)
 		})
 	})
 
@@ -185,7 +185,7 @@ describe("#initialize", () => {
 	})
 })
 
-describe("#revealTrialCard", () => {
+describe("#revealTryalCard", () => {
 	it("should reduce the card amount of the targeted player by one if the revealed card is not a witch", () => {
 		const gameResult = Game.new(["Alice", "Bob", "Charlie", "David"])
 
@@ -196,7 +196,7 @@ describe("#revealTrialCard", () => {
 
 		const { right: game } = gameResult
 
-		const updatedGame = game.revealTrialCard(1, false)
+		const updatedGame = game.revealTryalCard(1, false)
 
 		const { playersStillAlive } = updatedGame
 
@@ -205,10 +205,10 @@ describe("#revealTrialCard", () => {
 		playersStillAlive.forEach((player, position) => {
 			if (position === 1) {
 				expect(player.name).toEqual("Bob")
-				expect(player.trialCardsRemaining).toEqual(4)
+				expect(player.tryalCardsRemaining).toEqual(4)
 			} else {
 				expect(player.name).not.toEqual("Bob")
-				expect(player.trialCardsRemaining).toEqual(5)
+				expect(player.tryalCardsRemaining).toEqual(5)
 			}
 		})
 	})
@@ -223,7 +223,7 @@ describe("#revealTrialCard", () => {
 
 		const { right: game } = gameResult
 
-		const updatedGame = game.revealTrialCard(1, true)
+		const updatedGame = game.revealTryalCard(1, true)
 
 		const { playersStillAlive } = updatedGame
 
@@ -231,7 +231,7 @@ describe("#revealTrialCard", () => {
 
 		playersStillAlive.forEach((player) => {
 			expect(player.name).not.toEqual("Bob")
-			expect(player.trialCardsRemaining).toEqual(5)
+			expect(player.tryalCardsRemaining).toEqual(5)
 		})
 	})
 })

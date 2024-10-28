@@ -1,10 +1,10 @@
 export class Player {
 	readonly name: string
-	#trialCardAmount: number
+	#tryalCardAmount: number
 
 	private constructor(name: string, cardAmount: number) {
 		this.name = name
-		this.#trialCardAmount = cardAmount
+		this.#tryalCardAmount = cardAmount
 	}
 
 	static new(
@@ -16,10 +16,10 @@ export class Player {
 		return new Player(name, cardAmount)
 	}
 
-	revealTrialCard(isRevealedCardAWitch: boolean): Player {
+	revealTryalCard(isRevealedCardAWitch: boolean): Player {
 		return new Player(
 			this.name,
-			isRevealedCardAWitch ? 0 : this.#trialCardAmount - 1,
+			isRevealedCardAWitch ? 0 : this.#tryalCardAmount - 1,
 		)
 	}
 
@@ -27,8 +27,8 @@ export class Player {
 		return new Player(this.name, 0)
 	}
 
-	get trialCardsRemaining(): number {
-		return this.#trialCardAmount
+	get tryalCardsRemaining(): number {
+		return this.#tryalCardAmount
 	}
 }
 

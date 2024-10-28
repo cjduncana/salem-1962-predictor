@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
-    "Deno"
+    "Deno",
+    "Tryal"
   ],
   "deno.enable": true,
   "[typescript]": {

@@ -24,14 +24,14 @@ export class Game {
 		})
 	}
 
-	revealTrialCard(
+	revealTryalCard(
 		targetedPlayerPosition: number,
 		isRevealedCardAWitch: boolean,
 	): Game {
 		return new Game(
 			this.#players.map((player, position) =>
 				position === targetedPlayerPosition
-					? player.revealTrialCard(isRevealedCardAWitch)
+					? player.revealTryalCard(isRevealedCardAWitch)
 					: player
 			),
 		)
@@ -48,7 +48,7 @@ export class Game {
 	}
 
 	get playersStillAlive(): Player[] {
-		return this.#players.filter((player) => player.trialCardsRemaining > 0)
+		return this.#players.filter((player) => player.tryalCardsRemaining > 0)
 	}
 }
 
