@@ -1,7 +1,7 @@
-import { assert } from "jsr:@std/assert@1/assert";
-import { expect } from "jsr:@std/expect";
-import { describe, it } from "jsr:@std/testing/bdd";
-import { Either } from "npm:effect";
+import { assert } from "@std/assert";
+import { expect } from "@std/expect";
+import { describe, it } from "@std/testing/bdd";
+import { Either } from "effect";
 
 import { TooFewPlayersError, TooManyPlayersError } from "./error.ts";
 import { Game } from "./game.ts";

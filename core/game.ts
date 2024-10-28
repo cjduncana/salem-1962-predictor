@@ -1,4 +1,4 @@
-import { Either } from "npm:effect";
+import { Either } from "effect";
 
 import { type NumberOfPlayers, Player } from "./player.ts";
 import { TooFewPlayersError, TooManyPlayersError } from "./error.ts";

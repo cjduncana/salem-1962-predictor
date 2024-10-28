@@ -1,3 +1,4 @@
 {
-  "workspace": ["./core"]
+  "workspace": ["./core"],
+  "nodeModulesDir": "auto"
 }
