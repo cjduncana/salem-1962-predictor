@@ -1,7 +1,6 @@
 import { Either } from "effect"
 
 import { type NumberOfPlayers, Player } from "./player.ts"
-import { TooFewPlayersError, TooManyPlayersError } from "./error.ts"
 
 export class Game {
 	#players: Player[]
@@ -50,6 +49,16 @@ export class Game {
 	get playersStillAlive(): Player[] {
 		return this.#players.filter((player) => player.isAlive)
 	}
+}
+
+export class TooFewPlayersError {
+	readonly _tag = "TooFewPlayersError"
+	constructor(readonly playerAmount: number) {}
+}
+
+export class TooManyPlayersError {
+	readonly _tag = "TooManyPlayersError"
+	constructor(readonly playerAmount: number) {}
 }
 
 const MINIMUM_AMOUNT_PLAYERS = 4

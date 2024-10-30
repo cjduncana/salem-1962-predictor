@@ -3,8 +3,7 @@ import { expect } from "@std/expect"
 import { describe, it } from "@std/testing/bdd"
 import { Either } from "effect"
 
-import { TooFewPlayersError, TooManyPlayersError } from "./error.ts"
-import { Game } from "./game.ts"
+import { Game, TooFewPlayersError, TooManyPlayersError } from "./game.ts"
 
 describe("#initialize", () => {
 	it("should return an error if there are too few players", () => {
