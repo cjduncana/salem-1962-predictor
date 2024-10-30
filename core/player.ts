@@ -30,6 +30,10 @@ export class Player {
 	get tryalCardsRemaining(): number {
 		return this.#tryalCardAmount
 	}
+
+	get isAlive(): boolean {
+		return this.#tryalCardAmount > 0
+	}
 }
 
 export enum NumberOfPlayers {

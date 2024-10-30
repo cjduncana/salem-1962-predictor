@@ -48,7 +48,7 @@ export class Game {
 	}
 
 	get playersStillAlive(): Player[] {
-		return this.#players.filter((player) => player.tryalCardsRemaining > 0)
+		return this.#players.filter((player) => player.isAlive)
 	}
 }
 
