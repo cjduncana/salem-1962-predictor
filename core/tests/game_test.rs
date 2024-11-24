@@ -1,4 +1,4 @@
-use salem_core::{Game, NewGameError};
+use salem_core::{CardType, Game, NewGameError};
 
 #[test]
 fn should_return_an_error_if_there_are_too_few_players() {
@@ -115,5 +115,78 @@ fn should_return_an_error_if_there_are_too_many_players() {
         error,
         NewGameError::TooManyPlayersError(13),
         "Expected too many players error"
+    );
+}
+
+#[test]
+fn should_reduce_the_card_amount_of_the_targeted_player_by_one_if_the_revealed_card_is_not_a_witch()
+{
+    let game = Game::new(4).expect("Expected game to be created");
+
+    let bob = game
+        .get_player_by_position(1)
+        .expect("Expected player to be found");
+
+    assert_eq!(
+        game.players_still_alive().len(),
+        4,
+        "Expected 4 alive players"
+    );
+    assert_eq!(
+        bob.tryal_cards_remaining(),
+        5,
+        "Expected 5 cards before revealing the card"
+    );
+
+    let game = game.reveal_tryal_card(bob, &CardType::NotAWitch);
+
+    let bob = game.get_player_by_position(1).unwrap();
+
+    assert_eq!(
+        game.players_still_alive().len(),
+        4,
+        "Expected 4 alive players"
+    );
+    assert_eq!(
+        bob.tryal_cards_remaining(),
+        4,
+        "Expected 4 cards after revealing the card"
+    );
+}
+
+#[test]
+fn should_kill_the_targeted_player_if_the_revealed_card_is_a_witch() {
+    let game = Game::new(4).expect("Expected game to be created");
+
+    let bob = game
+        .get_player_by_position(1)
+        .expect("Expected player to be found");
+
+    assert_eq!(
+        game.players_still_alive().len(),
+        4,
+        "Expected 4 alive players"
+    );
+    assert_eq!(
+        bob.tryal_cards_remaining(),
+        5,
+        "Expected 5 cards before revealing the card"
+    );
+
+    let game = game.reveal_tryal_card(bob, &CardType::Witch);
+
+    let bob = game
+        .get_player_by_position(1)
+        .expect("Expected player to be found");
+
+    assert_eq!(
+        game.players_still_alive().len(),
+        3,
+        "Expected 3 alive players"
+    );
+    assert_eq!(
+        bob.tryal_cards_remaining(),
+        0,
+        "Expected 0 cards after revealing the card"
     );
 }

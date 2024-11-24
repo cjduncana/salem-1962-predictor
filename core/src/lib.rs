@@ -1,5 +1,3 @@
-use std::iter;
-
 #[derive(Debug)]
 pub struct Game {
     players: Vec<Player>,
@@ -10,11 +8,9 @@ impl Game {
         let valid_number_of_players: NumberOfPlayers = number_of_players.try_into()?;
 
         Ok(Game {
-            players: iter::repeat_n(
-                Player::new(&valid_number_of_players),
-                number_of_players.into(),
-            )
-            .collect(),
+            players: (0..number_of_players)
+                .map(|position| Player::new(position.to_string(), &valid_number_of_players))
+                .collect(),
         })
     }
 
@@ -24,16 +20,43 @@ impl Game {
             .filter(|player| player.is_alive())
             .collect()
     }
+
+    pub fn get_player_by_position(&self, position: usize) -> Option<&Player> {
+        self.players.get(position)
+    }
+
+    pub fn reveal_tryal_card(&self, player: &Player, card_type: &CardType) -> Game {
+        Game {
+            players: self
+                .players
+                .iter()
+                .map(|p| {
+                    if p == player {
+                        p.reveal_tryal_card(card_type)
+                    } else {
+                        p.clone()
+                    }
+                })
+                .collect(),
+        }
+    }
+}
+
+pub enum CardType {
+    NotAWitch,
+    Witch,
 }
 
 #[derive(Clone, Debug)]
 pub struct Player {
+    id: String,
     tryal_card_amount: u8,
 }
 
 impl Player {
-    pub fn new(number_of_players: &NumberOfPlayers) -> Self {
+    pub fn new(id: String, number_of_players: &NumberOfPlayers) -> Self {
         Player {
+            id,
             tryal_card_amount: match number_of_players {
                 NumberOfPlayers::Four | NumberOfPlayers::Five | NumberOfPlayers::Six => 5,
                 NumberOfPlayers::Seven | NumberOfPlayers::Eight | NumberOfPlayers::Nine => 4,
@@ -48,6 +71,22 @@ impl Player {
 
     pub fn is_alive(&self) -> bool {
         self.tryal_card_amount > 0
+    }
+
+    pub fn reveal_tryal_card(&self, card_type: &CardType) -> Self {
+        Player {
+            id: self.id.clone(),
+            tryal_card_amount: match card_type {
+                CardType::NotAWitch => self.tryal_card_amount - 1,
+                CardType::Witch => 0,
+            },
+        }
+    }
+}
+
+impl PartialEq for Player {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id
     }
 }
 
