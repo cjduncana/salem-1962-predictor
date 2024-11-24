@@ -190,3 +190,58 @@ fn should_kill_the_targeted_player_if_the_revealed_card_is_a_witch() {
         "Expected 0 cards after revealing the card"
     );
 }
+
+#[test]
+fn should_remove_all_cards_from_the_targeted_players() {
+    let game = Game::new(4).expect("Expected game to be created");
+
+    let bob = game
+        .get_player_by_position(1)
+        .expect("Expected player to be found");
+
+    let david = game
+        .get_player_by_position(3)
+        .expect("Expected player to be found");
+
+    assert_eq!(
+        game.players_still_alive().len(),
+        4,
+        "Expected 4 alive players"
+    );
+    assert_eq!(
+        bob.tryal_cards_remaining(),
+        5,
+        "Expected 5 cards before revealing the card"
+    );
+    assert_eq!(
+        david.tryal_cards_remaining(),
+        5,
+        "Expected 5 cards before revealing the card"
+    );
+
+    let game = game.kill_players(vec![bob, david]);
+
+    let bob = game
+        .get_player_by_position(1)
+        .expect("Expected player to be found");
+
+    let david = game
+        .get_player_by_position(3)
+        .expect("Expected player to be found");
+
+    assert_eq!(
+        game.players_still_alive().len(),
+        2,
+        "Expected 2 alive players"
+    );
+    assert_eq!(
+        bob.tryal_cards_remaining(),
+        0,
+        "Expected 0 cards after revealing the card"
+    );
+    assert_eq!(
+        david.tryal_cards_remaining(),
+        0,
+        "Expected 0 cards after revealing the card"
+    );
+}

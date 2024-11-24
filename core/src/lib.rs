@@ -40,6 +40,22 @@ impl Game {
                 .collect(),
         }
     }
+
+    pub fn kill_players(&self, targeted_players: Vec<&Player>) -> Game {
+        Game {
+            players: self
+                .players
+                .iter()
+                .map(|player| {
+                    if targeted_players.contains(&player) {
+                        player.die()
+                    } else {
+                        player.clone()
+                    }
+                })
+                .collect(),
+        }
+    }
 }
 
 pub enum CardType {
@@ -80,6 +96,13 @@ impl Player {
                 CardType::NotAWitch => self.tryal_card_amount - 1,
                 CardType::Witch => 0,
             },
+        }
+    }
+
+    pub fn die(&self) -> Self {
+        Player {
+            id: self.id.clone(),
+            tryal_card_amount: 0,
         }
     }
 }
